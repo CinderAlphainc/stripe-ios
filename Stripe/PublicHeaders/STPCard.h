@@ -25,6 +25,30 @@ typedef NS_ENUM(NSInteger, STPCardBrand) {
     STPCardBrandUnknown,
 };
 
+typedef NS_ENUM(NSInteger, STPCardCVCCheckResult) {
+    STPCardCVCCheckResultPass,
+    STPCardCVCCheckResultFail,
+    STPCardCVCCheckResultUnavailable,
+    STPCardCVCCheckResultUnchecked,
+    STPCardCVCCheckResultUnknown,
+};
+
+typedef NS_ENUM(NSInteger, STPCardAddressLine1Check) {
+    STPCardAddressLine1CheckPass,
+    STPCardAddressLine1CheckFail,
+    STPCardAddressLine1CheckUnavailable,
+    STPCardAddressLine1CheckUnchecked,
+    STPCardAddressLine1CheckUnknown,
+};
+
+typedef NS_ENUM(NSInteger, STPCardAddressZipCheck) {
+    STPCardAddressZipCheckPass,
+    STPCardAddressZipCheckFail,
+    STPCardAddressZipCheckUnavailable,
+    STPCardAddressZipCheckUnchecked,
+    STPCardAddressZipCheckUnknown,
+};
+
 /**
  *  Representation of a user's credit card details. You can assemble these with information that your user enters and
  *  then create Stripe tokens with them using an STPAPIClient. @see https://stripe.com/docs/api#cards
@@ -102,6 +126,22 @@ typedef NS_ENUM(NSInteger, STPCardBrand) {
  *  Two-letter ISO code representing the issuing country of the card.
  */
 @property (nonatomic, readonly) NSString *country;
+
+/**
+ * The status of the CVC check.
+ */
+@property (nonatomic, readonly) STPCardCVCCheckResult CVCCheck;
+
+/**
+ * The status of the address line 1 check.
+ */
+@property (nonatomic, readonly) STPCardAddressLine1Check addressLine1Check;
+
+/**
+ * The status of the zip code check.
+ */
+@property (nonatomic, readonly) STPCardAddressZipCheck addressZipCheck;
+
 
 // These validation methods work as described in
 // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/Validation.html#//apple_ref/doc/uid/20002173-CJBDBHCB

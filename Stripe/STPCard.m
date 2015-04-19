@@ -27,6 +27,9 @@
     if (self) {
         _brand = STPCardBrandUnknown;
         _funding = STPCardFundingTypeOther;
+        _CVCCheck = STPCardCVCCheckResultUnknown;
+        _addressLine1Check = STPCardAddressLine1CheckUnknown;
+        _addressZipCheck = STPCardAddressZipCheckUnknown;
     }
 
     return self;
@@ -365,6 +368,36 @@
             _funding = STPCardFundingTypePrepaid;
         } else {
             _funding = STPCardFundingTypeOther;
+        }
+        NSString *cvcCheck = dict[@"cvc_check"];
+        if ([cvcCheck.lowercaseString isEqualToString:@"pass"]) {
+            _CVCCheck = STPCardCVCCheckResultPass;
+        } else if ([cvcCheck.lowercaseString isEqualToString:@"fail"]) {
+            _CVCCheck = STPCardCVCCheckResultFail;
+        } else if ([cvcCheck.lowercaseString isEqualToString:@"unavailable"]) {
+            _CVCCheck = STPCardCVCCheckResultUnavailable;
+        } else if ([cvcCheck.lowercaseString isEqualToString:@"unchecked"]) {
+            _CVCCheck = STPCardCVCCheckResultUnchecked;
+        }
+        NSString *addrLine1Check = dict[@"address_line1_check"];
+        if ([addrLine1Check.lowercaseString isEqualToString:@"pass"]) {
+            _addressLine1Check = STPCardAddressLine1CheckPass;
+        } else if ([addrLine1Check.lowercaseString isEqualToString:@"fail"]) {
+            _addressLine1Check = STPCardAddressLine1CheckFail;
+        } else if ([addrLine1Check.lowercaseString isEqualToString:@"unavailable"]) {
+            _addressLine1Check = STPCardAddressLine1CheckUnavailable;
+        } else if ([addrLine1Check.lowercaseString isEqualToString:@"unchecked"]) {
+            _addressLine1Check = STPCardAddressLine1CheckUnchecked;
+        }
+        NSString *zipCheck = dict[@"address_zip_check"];
+        if ([zipCheck.lowercaseString isEqualToString:@"pass"]) {
+            _addressZipCheck = STPCardAddressZipCheckPass;
+        } else if ([zipCheck.lowercaseString isEqualToString:@"fail"]) {
+            _addressZipCheck = STPCardAddressZipCheckFail;
+        } else if ([zipCheck.lowercaseString isEqualToString:@"unavailable"]) {
+            _addressZipCheck = STPCardAddressZipCheckUnavailable;
+        } else if ([zipCheck.lowercaseString isEqualToString:@"unchecked"]) {
+            _addressZipCheck = STPCardAddressZipCheckUnchecked;
         }
         _fingerprint = dict[@"fingerprint"];
         _country = dict[@"country"];

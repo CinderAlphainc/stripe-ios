@@ -63,7 +63,10 @@
         @"last4": @"1234",
         @"brand": @"MasterCard",
         @"fingerprint": @"Fingolfin",
-        @"country": @"Japan"
+        @"country": @"Japan",
+        @"address_line1_check": @"fail",
+        @"address_zip_check": @"pass",
+        @"cvc_check": @"unavailable"
     };
 }
 
@@ -84,6 +87,9 @@
     XCTAssertEqual([cardWithAttributes brand], STPCardBrandMasterCard, @"type is set correctly");
     XCTAssertEqualObjects([cardWithAttributes fingerprint], @"Fingolfin", @"fingerprint is set correctly");
     XCTAssertEqualObjects([cardWithAttributes country], @"Japan", @"country is set correctly");
+    XCTAssertEqual([cardWithAttributes addressLine1Check], STPCardAddressLine1CheckFail, @"address_line1_check is set correctly");
+    XCTAssertEqual([cardWithAttributes addressZipCheck], STPCardAddressZipCheckPass, @"address_zip_check is set correctly");
+    XCTAssertEqual([cardWithAttributes CVCCheck], STPCardCVCCheckResultUnavailable, @"cvc_check is set correctly");
 }
 
 - (void)testFormEncode {
